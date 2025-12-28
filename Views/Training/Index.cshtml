@@ -1,0 +1,68 @@
+﻿@model IEnumerable<HygreWebApp.Models.TrainingWeek>
+
+@{
+    ViewData["Title"] = "Book Training Slot";
+}
+
+<div class="container py-5">
+    <h2 class="mb-4 text-center">Weekly Training Slot Booking</h2>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+
+    <div class="row g-4">
+        @foreach (var week in Model)
+        {
+            var booked = week.Bookings.Count;
+            var available = week.MaxSeats - booked;
+
+            <div class="col-md-4">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h5 class="fw-bold">
+                            Week of @week.WeekStartDate.ToString("dd MMM yyyy")
+                        </h5>
+
+                        <p>
+                            Seats Available:
+                            <strong>@available / @week.MaxSeats</strong>
+                        </p>
+
+                        @if (available > 0)
+                        {
+                            <form asp-action="Book" method="post">
+                                <input type="hidden" name="weekId" value="@week.Id" />
+
+                                <input class="form-control mb-2"
+                                       name="name"
+                                       placeholder="Your Name"
+                                       required />
+
+                                <input class="form-control mb-2"
+                                       name="email"
+                                       type="email"
+                                       placeholder="Email Address"
+                                       required />
+
+                                <button class="btn btn-success w-100">
+                                    Book Slot
+                                </button>
+                            </form>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Fully Booked</span>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

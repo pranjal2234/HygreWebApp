@@ -1,0 +1,161 @@
+﻿@model IEnumerable<HygreWebApp.Models.SiteImage>
+
+@{
+    ViewData["Title"] = "HygreWebApp | Aeroponics & Training";
+
+    var homepageImages = Model.Where(x => x.Category == "Homepage-Setup").ToList();
+    var trainingImages = Model.Where(x => x.Category == "Training").ToList();
+    var faqImages = Model.Where(x => x.Category == "FAQ").ToList();
+}
+
+<!-- HERO SECTION -->
+<section class="hero-section text-center py-5 bg-dark text-white">
+    <div class="container">
+        <h1 class="display-4 fw-bold">Hygre Aeroponics</h1>
+        <p class="lead mt-3">
+            Sustainable Aeroponic Solutions & Professional Training
+        </p>
+        <span class="badge bg-warning text-dark mt-3 fs-6">🚧 Coming Soon 🚧</span>
+    </div>
+</section>
+
+<!-- IMAGE SHOWCASE -->
+<section class="container my-5">
+    <h2 class="text-center mb-4">Our Aeroponic Setup</h2>
+
+    <div class="row g-4">
+        @if (homepageImages.Any())
+        {
+            foreach (var img in homepageImages)
+            {
+                <div class="col-md-4">
+                    <img src="@img.FilePath"
+                         class="img-fluid rounded shadow"
+                         alt="Aeroponic Setup">
+                </div>
+            }
+        }
+        else
+        {
+            <p class="text-center text-muted">No setup images uploaded yet.</p>
+        }
+    </div>
+</section>
+
+<!-- DETAILS SECTION -->
+<section class="bg-light py-5">
+    <div class="container">
+        <h2 class="mb-4">What We Offer</h2>
+        <ul class="fs-5">
+            <li>✔ Commercial Aeroponic Systems (Sales Opening Soon)</li>
+            <li>✔ Customized Home & Institutional Setups</li>
+            <li>✔ Research-grade Aeroponics</li>
+            <li>✔ Student & Professional Training Programs</li>
+        </ul>
+    </div>
+</section>
+
+<!-- TRAINING SECTION -->
+<section class="container py-5">
+    <h2 class="mb-4">Training Programs</h2>
+    <p class="fs-5">
+        Hygre provides hands-on aeroponics training for:
+    </p>
+
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <ul>
+                <li>Agriculture & Biotechnology Students</li>
+                <li>Startup Founders & Entrepreneurs</li>
+                <li>Researchers & Innovators</li>
+            </ul>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Training" asp-action="Index">Book your slot</a>
+
+        </div>
+
+        <div class="col-md-6">
+            @if (trainingImages.Any())
+            {
+                <img src="@trainingImages.First().FilePath"
+                     class="img-fluid rounded shadow"
+                     alt="Training Program">
+            }
+            else
+            {
+                <div class="text-muted">Training image not uploaded yet.</div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- FAQ SECTION -->
+<section class="bg-light py-5">
+    <div class="container">
+        <h2 class="mb-4">Frequently Asked Questions</h2>
+
+        <div class="accordion" id="faqAccordion">
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                        What is Aeroponics?
+                    </button>
+                </h2>
+                <div id="faq1" class="accordion-collapse collapse show">
+                    <div class="accordion-body">
+                        Aeroponics is a soil-less cultivation method where plant roots are misted with nutrients.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">
+                        When will products be available?
+                    </button>
+                </h2>
+                <div id="faq2" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        Our commercial systems are launching soon. Stay connected for updates.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">
+                        Do you provide certification?
+                    </button>
+                </h2>
+                <div id="faq3" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        Yes, training programs include certification after completion.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="container py-5">
+    <h2 class="mb-4">Contact Us</h2>
+
+    <form>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <input class="form-control" placeholder="Your Name">
+            </div>
+            <div class="col-md-6">
+                <input class="form-control" placeholder="Email Address">
+            </div>
+            <div class="col-12">
+                <textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-success px-4">Send Message</button>
+            </div>
+        </div>
+    </form>
+</section>

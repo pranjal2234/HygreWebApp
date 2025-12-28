@@ -1,0 +1,56 @@
+﻿@model IEnumerable<HygreWebApp.Models.SiteImage>
+
+@{
+    ViewData["Title"] = "Admin - Manage Images";
+}
+
+<div class="container py-5">
+    <h2 class="mb-4">Manage Homepage Images</h2>
+
+    <!-- Upload Form -->
+    <form asp-action="Upload" method="post" enctype="multipart/form-data" class="mb-5">
+        <div class="row g-3">
+            <div class="col-md-5">
+                <input type="file" name="imageFile" class="form-control" required />
+            </div>
+
+            <div class="col-md-4">
+                <select name="category" class="form-select" required>
+                    <option value="Homepage-Setup">Homepage - Setup</option>
+                    <option value="Training">Training</option>
+                    <option value="FAQ">FAQ</option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <button class="btn btn-success w-100">Upload</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Existing Images -->
+    <div class="row g-4">
+        @foreach (var img in Model)
+        {
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <img src="@img.FilePath" class="card-img-top" />
+                    <div class="card-body text-center">
+                        <p class="fw-bold">@img.Category</p>
+
+                        <form asp-action="Replace" method="post" enctype="multipart/form-data" class="mb-2">
+                            <input type="hidden" name="id" value="@img.Id" />
+                            <input type="file" name="newImage" class="form-control mb-2" required />
+                            <button class="btn btn-warning btn-sm w-100">Replace</button>
+                        </form>
+
+                        <form asp-action="Delete" method="post">
+                            <input type="hidden" name="id" value="@img.Id" />
+                            <button class="btn btn-danger btn-sm w-100">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
