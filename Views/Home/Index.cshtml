@@ -7,6 +7,34 @@
     var trainingImages = Model.Where(x => x.Category == "Training").ToList();
     var faqImages = Model.Where(x => x.Category == "FAQ").ToList();
 }
+<div class="text-center mb-4">
+    <a asp-controller="AdminImage"
+       asp-action="Index"
+       class="btn btn-outline-primary">
+        Admin Image Section
+    </a>
+</div>
+<div class="text-center mb-4">
+    <a asp-controller="AdminImage"
+       asp-action="Index"
+       class="btn btn-outline-primary">
+        Admin Image Update
+    </a>
+</div>
+<div class="text-center mb-4">
+    <a asp-controller="AdminPayment"
+       asp-action="Index"
+       class="btn btn-outline-primary">
+        Admin Payment
+    </a>
+</div>
+<div class="text-center mb-4">
+    <a asp-controller="Admintraining"
+       asp-action="Index"
+       class="btn btn-outline-primary">
+        Admin Training
+    </a>
+</div>
 
 <!-- HERO SECTION -->
 <section class="hero-section text-center py-5 bg-dark text-white">
@@ -69,7 +97,11 @@
                 <li>Startup Founders & Entrepreneurs</li>
                 <li>Researchers & Innovators</li>
             </ul>
-            <a class="nav-link text-dark" asp-area="" asp-controller="Training" asp-action="Index">Book your slot</a>
+            <a class="btn btn-success ms-2 px-4 fw-semibold"
+               asp-controller="Training"
+               asp-action="Index">
+                Book Your Slot
+            </a>
 
         </div>
 

@@ -1,0 +1,40 @@
+﻿@model HygreWebApp.Models.PaymentDetail
+
+@{
+    ViewData["Title"] = "Admin | Payment Details";
+}
+
+<div class="container py-5">
+    <h2 class="mb-4">Edit Payment Details</h2>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+
+    <form method="post">
+        <div class="card shadow">
+            <div class="card-body">
+
+                <h5 class="fw-bold mb-3">🏦 Bank Details</h5>
+
+                <input class="form-control mb-2" asp-for="AccountName" placeholder="Account Name" />
+                <input class="form-control mb-2" asp-for="BankName" placeholder="Bank Name" />
+                <input class="form-control mb-2" asp-for="AccountNumber" placeholder="Account Number" />
+                <input class="form-control mb-2" asp-for="IFSC" placeholder="IFSC Code" />
+                <input class="form-control mb-2" asp-for="Branch" placeholder="Branch" />
+
+                <hr />
+
+                <h5 class="fw-bold mb-3">📱 UPI Details</h5>
+
+                <input class="form-control mb-2" asp-for="UpiId" placeholder="UPI ID" />
+                <input class="form-control mb-2" asp-for="AcceptedApps" placeholder="Accepted Apps" />
+
+                <button class="btn btn-success mt-3 px-4">
+                    Save Changes
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

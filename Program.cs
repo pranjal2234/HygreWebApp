@@ -1,4 +1,4 @@
-using HygreWebApp.Data;
+﻿using HygreWebApp.Data;
 using HygreWebApp.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -55,14 +55,19 @@ else
 app.UseHttpsRedirection();
 app.UseRouting();
 
+app.UseAuthentication(); // ❗ REQUIRED
 app.UseAuthorization();
 
 app.MapStaticAssets();
 
+///app.MapControllerRoute(
+    //name: "default",
+    //pattern: "{controller=Home}/{action=Index}/{id?}")
+    //.WithStaticAssets();
+
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
-    .WithStaticAssets();
+    pattern: "{controller=Test}/{action=Index}/{id?}");
 
 app.MapRazorPages()
    .WithStaticAssets();

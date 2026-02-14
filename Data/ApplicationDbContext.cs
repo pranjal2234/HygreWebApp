@@ -14,6 +14,7 @@ namespace HygreWebApp.Data
         public DbSet<SiteImage> SiteImages { get; set; }
         public DbSet<TrainingWeek> TrainingWeeks { get; set; }
         public DbSet<TrainingBooking> TrainingBookings { get; set; }
+        public DbSet<PaymentDetail> PaymentDetails { get; set; }
 
     }
 }

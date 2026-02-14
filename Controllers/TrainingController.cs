@@ -29,6 +29,11 @@ namespace HygreWebApp.Controllers
 
             return View(weeks);
         }
+        public IActionResult PaymentDetails()
+        {
+            var details = _context.PaymentDetails.FirstOrDefault();
+            return View(details);
+        }
 
         // BOOK SLOT
         [HttpPost]

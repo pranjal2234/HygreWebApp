@@ -1,0 +1,61 @@
+﻿
+
+@model HygreWebApp.Models.PaymentDetail
+
+@{
+    ViewData["Title"] = "Training Fee Payment Details";
+}
+
+<div class="container py-5">
+    <div class="col-md-8 mx-auto">
+
+        <h2 class="text-center mb-4">Training Fee Payment Details</h2>
+
+        @if (Model == null)
+        {
+            <div class="alert alert-warning">
+                Payment details are not available yet.
+            </div>
+        }
+        else
+        {
+            <div class="card shadow">
+                <div class="card-body">
+
+                    <h5 class="fw-bold mb-3">🏦 Bank Details</h5>
+
+                    <table class="table table-bordered">
+                        <tr><th>Account Name</th><td>@Model.AccountName</td></tr>
+                        <tr><th>Bank Name</th><td>@Model.BankName</td></tr>
+                        <tr><th>Account Number</th><td>@Model.AccountNumber</td></tr>
+                        <tr><th>IFSC</th><td>@Model.IFSC</td></tr>
+                        <tr><th>Branch</th><td>@Model.Branch</td></tr>
+                    </table>
+
+                    <hr />
+
+                    <h5 class="fw-bold mb-3">📱 UPI Details</h5>
+
+                    <table class="table table-bordered">
+                        <tr><th>UPI ID</th><td>@Model.UpiId</td></tr>
+                        <tr><th>Accepted Apps</th><td>@Model.AcceptedApps</td></tr>
+                    </table>
+
+                    <div class="alert alert-warning mt-4">
+                        ⚠️ After payment, please send the transaction screenshot
+                        to our WhatsApp or Email for confirmation.
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <a asp-controller="Training"
+                           asp-action="Index"
+                           class="btn btn-success px-4">
+                            Back to Slot Booking
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
